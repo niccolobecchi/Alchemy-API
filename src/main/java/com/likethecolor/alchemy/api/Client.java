@@ -103,7 +103,7 @@ public class Client {
 
     DataOutputStream dataOutputStream = null;
     HttpURLConnection handle = null;
-    IOException e = null;
+    IOException e0 = null;
     try {
       handle = (HttpURLConnection) url.openConnection();
       handle.setDoOutput(true);
@@ -115,7 +115,7 @@ public class Client {
     }
     catch(IOException e) {
       //e.printStackTrace();
-      this.e = e;
+      e0 = e;
     }
     finally {
       if(dataOutputStream != null) {
@@ -131,8 +131,8 @@ public class Client {
       }
     }
 
-    if(e != null)
-      throw e;
+    if(e0 != null)
+      throw e0;
 
     return jsonString;
   }
