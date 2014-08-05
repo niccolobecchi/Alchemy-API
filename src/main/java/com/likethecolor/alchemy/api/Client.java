@@ -87,7 +87,7 @@ public class Client {
     return jsonString;
   }
 
-  private String post(final String callName, String callType, Params params) throws MalformedURLException {
+  private String post(final String callName, String callType, Params params) throws MalformedURLException,IOException {
     String jsonString = null;
     URL url = new URL(requestUri + callType + "/" + callName);
 
@@ -101,6 +101,7 @@ public class Client {
 
     DataOutputStream dataOutputStream = null;
     HttpURLConnection handle = null;
+    IOException e = null;
     try {
       handle = (HttpURLConnection) url.openConnection();
       handle.setDoOutput(true);
@@ -111,7 +112,8 @@ public class Client {
       jsonString = doRequest(handle);
     }
     catch(IOException e) {
-      e.printStackTrace();
+      //e.printStackTrace();
+      this.e = e;
     }
     finally {
       if(dataOutputStream != null) {
@@ -126,6 +128,9 @@ public class Client {
         handle.disconnect();
       }
     }
+
+    if(e != null)
+      throw e;
 
     return jsonString;
   }
