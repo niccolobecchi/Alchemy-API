@@ -2,6 +2,8 @@
  * File: Client.java
  * Original Author: Dan Brown <dan.brown@answers.com>
  * Copyright 2012 Answers.com
+ * 
+ * Niccolo.Becchi, 2014.08.05 Propagated IoException to the client on post 
  */
 package com.likethecolor.alchemy.api;
 
